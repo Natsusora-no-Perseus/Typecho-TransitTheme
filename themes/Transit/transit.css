@@ -1,0 +1,199 @@
+@font-face{
+    font-family: 'Source Sans 3 VF';
+    font-weight: 200 900;
+    font-style: normal;
+    font-stretch: normal;
+    src: url("./SourceSans3VF-Upright.otf.woff2") format('woff2-variations');
+}
+
+@font-face{
+    font-family: 'Fira Sans';
+    src: url('eot/FiraSans-Regular.eot');
+    src: local('Fira Sans Regular'),
+         url('eot/FiraSans-Regular.eot') format('embedded-opentype'),
+         url('woff/FiraSans-Regular.woff') format('woff'),
+         url('ttf/FiraSans-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+:root {
+    color-scheme: light dark;
+}
+
+body {
+    color: light-dark(#4e4b42, #fafbff);
+    background-color: light-dark(#cdc8b0, #1e252a);
+    font-family: "Fira Sans", "Source Sans 3 VF", serif;
+}
+
+a {
+    color: light-dark(#3354AA, #708ec6);
+}
+
+.entry{
+    max-width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0.5em 1em 0.5em 1em;
+    padding-bottom: 0;
+    padding-top: 0;
+    border-bottom: 1px solid #4a5157;
+    margin-bottom: 0;
+    background-color: light-dark(#dad4bb, #2c2d32);
+}
+
+.entry-left {
+    flex-grow: 1;
+    flex-shrink: 1;
+    overflow: hidden;
+}
+
+.entry-title {
+    font-size: 2em;
+    line-height: 1.5em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin: 0;
+    border-bottom: 2px solid #6CF;
+}
+
+.entry-meta {
+    margin-top: 0.5em;
+    list-style: none;
+    padding:0;
+    margin:0;
+    color: #999;
+}
+
+.entry-meta li {
+  display: inline-block;
+  margin: 0;
+}
+
+.entry-content {
+    margin-top: 0.5em;
+    max-height: 6em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.entry-category {
+    padding: 0;
+    margin: 1em;
+    line-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em;
+    align-self: stretch;
+    align-items: start;
+    writing-mode: vertical-rl;
+}
+
+.entry-category li {
+    display: flex;
+    font-size: 1em;
+    font-weight: 700;
+    writing-mode: vertical-rl;
+    text-align: center;
+    white-space: normal;
+    display: flex;
+    box-sizing: border-box;
+    flex-grow: 1;
+    height: 100%;
+}
+
+.entry-category li > a {
+    text-decoration: none;
+    color: #FFF;
+    display: block;
+    padding: 0;
+    padding-top: 0.5em;
+    text-align: start;
+    height: 100%;
+    transition: backdrop-filter 0.3s ease;
+}
+
+.entry-category li > a:hover {
+    backdrop-filter: brightness(120%);
+}
+
+/* post page */
+.post-near {
+    background-color: light-dark(#dad4bb, #1e252a);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    padding: 0 10px 30px 10px;
+}
+
+.post-near a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.post-near #larrow{
+    width: auto;
+    height: 30px;
+}
+
+.post-near #rarrow {
+    width: auto;
+    height: 30px;
+    transform: rotate(180deg);
+}
+
+.near-bar {
+    display: flex;
+    flex-grow: 1;
+    height: 30px;
+    background-color: #f76f0c;
+    justify-content: space-between;
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+.near-bar #ltext {
+    padding-left: 20px;
+    text-align: left;
+}
+
+.near-bar #rtext {
+    padding-right: 20px;
+    text-align: right;
+}
+
+/* Page nav */
+
+.page-navigator {
+  list-style: none;
+  margin: 25px 0;
+  padding: 0;
+  text-align: center;
+}
+.page-navigator li {
+  display: inline-block;
+  margin: 0 4px;
+}
+.page-navigator a {
+  display: inline-block;
+  padding: 0 10px;
+  height: 30px;
+  line-height: 30px;
+}
+.page-navigator a:hover {
+  background: #EEE;
+  text-decoration: none;
+}
+
+.page-navigator .current a {
+  color: #444;
+  background: #EEE;
+}
