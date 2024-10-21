@@ -1,20 +1,13 @@
 @font-face{
     font-family: 'Source Sans 3 VF';
+    src: url("SourceSans3VF-Upright.otf.woff2") format('woff2-variations'),
+         url("SourceSans3VF-Upright.otf.woff") format('woff-variations'),
+         url('SourceSans3VF-Upright.ttf') format('truetype-variations');
+    unicode-range: U+0000-FFFF;
     font-weight: 200 900;
     font-style: normal;
     font-stretch: normal;
-    src: url("./SourceSans3VF-Upright.otf.woff2") format('woff2-variations');
-}
-
-@font-face{
-    font-family: 'Fira Sans';
-    src: url('eot/FiraSans-Regular.eot');
-    src: local('Fira Sans Regular'),
-         url('eot/FiraSans-Regular.eot') format('embedded-opentype'),
-         url('woff/FiraSans-Regular.woff') format('woff'),
-         url('ttf/FiraSans-Regular.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
+    font-display: swap;
 }
 
 :root {
@@ -24,11 +17,17 @@
 body {
     color: light-dark(#4e4b42, #fafbff);
     background-color: light-dark(#cdc8b0, #1e252a);
-    font-family: "Fira Sans", "Source Sans 3 VF", serif;
+    font-family: 'Source Sans 3 VF', serif;
+    /*'Fira Sans' */
 }
 
 a {
     color: light-dark(#3354AA, #708ec6);
+}
+
+.col-9 {
+    width: 90%;
+    padding: 0 5%;
 }
 
 .entry{
@@ -124,6 +123,45 @@ a {
 }
 
 /* post page */
+.post-title {
+    font-size: 2em;
+    font-weight: 600;
+    line-height: 1.5em;
+}
+
+.post-title a {
+    text-decoration: none;
+}
+
+.post-meta {
+    font-size: 1.2em;
+    line-height: 2.4em;
+    padding: 0;
+}
+
+.post-meta li {
+    list-style: none;
+    display: inline;
+    padding-right: 0.5em;
+    padding-left: 0.5em;
+    border-left: 5px solid;
+    border-left-color: light-dark(#000, #FFF);
+}
+
+.post-meta-cats {
+    display: inline;
+}
+
+.post-meta-cats li {
+    border: none;
+}
+
+.post-meta-cats li>a {
+    text-decoration: none;
+    color: #FFF;
+}
+
+/* post near */
 .post-near {
     background-color: light-dark(#dad4bb, #1e252a);
     display: flex;
@@ -154,7 +192,7 @@ a {
     display: flex;
     flex-grow: 1;
     height: 30px;
-    background-color: #f76f0c;
+    background-color: #8098a2;
     justify-content: space-between;
     font-size: 1.5em;
     font-weight: 700;

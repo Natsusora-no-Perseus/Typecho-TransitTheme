@@ -1,11 +1,11 @@
 <?php
 /**
- * Default theme for Typecho
+ * Transit theme for Typecho
  *
- * @package Typecho Replica Theme
- * @author Typecho Team
- * @version 1.2
- * @link http://typecho.org
+ * @package Typecho Transit Theme
+ * @author Natsusora
+ * @version 0.2
+ * @link https://github.com/Natsusora-no-Perseus/Typecho-TransitTheme
  */
 
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
@@ -14,7 +14,7 @@ $this->need('ekifuncs.php');
 ?>
 
 
-<div class="col-mb-12 col-8" id="main" role="main">
+<div class="col-9" id="main" role="main">
     <?php while ($this->next()): ?>
         <article class="entry" itemscope itemtype="http://schema.org/BlogPosting">
             <div class="entry-left">

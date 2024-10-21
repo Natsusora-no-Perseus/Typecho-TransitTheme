@@ -47,24 +47,41 @@ function getHeadingsOrExcerpt($content, $excerptLength = 32) {
     return trim($headings);
 }
 
-function drawColoredCategory ($categories) {
-    foreach ($categories as $category) {
-        // Get the category ID (mid)
-        $categoryId = $category['mid'];
+function getCategoryData ($categories) {
+    $defaultColor = '#999';
+    $ret = [];
 
-        // Query the database to get the color assigned to this category
+    foreach ($categories as $category) {
+        $catId = $category['mid'];
+
+        // Query DB for color assigned to catId
         $db = Typecho_Db::get();
         $color = $db->fetchObject($db->select('category_color')
             ->from('table.metas')
-            ->where('mid = ?', $categoryId))->category_color;
+            ->where('mid = ?', $catId))->category_color;
 
-        // Use the assigned color if it exists, otherwise fallback to #123456
-        $color = $color ? $color : '#999';
-        $link = $category['permalink'];
+        // Color fallback check
+        $color = $color ? $color : $defaultColor;
 
-        // Output the category name with the assigned or default color
-        echo '<li style="background-color:' . $color . '"><a href="' . $link . '">'. htmlspecialchars($category['name']) . ' ↗</a></li>' . "\xA";
+        // Fill in associative array
+        $ret[] = [
+            'mid' => $catId,
+            'color' => $color,
+            'name' => $category['name'],
+            'link' => $category['permalink']
+        ];
     }
+    return $ret;
 }
+
+function drawColoredCategory ($categories) {
+    $catData = getCategoryData($categories);
+    foreach ($catData as $elem) {
+        echo '<li style="background-color:' . $elem['color'] . '"><a href="' .
+            $elem['link'] . '">' . $elem['name'] . ' ↗</a></li>' . "\xA";
+    }
+    // echo '<li style="background-color:' . $color . '"><a href="' . $link . '">'. htmlspecialchars($category['name']) . ' ↗</a></li>' . "\xA";
+}
+
 // print_r($category);
 ?>

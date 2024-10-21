@@ -1,13 +1,16 @@
 <?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
 <?php $this->need('header.php'); ?>
+<?php $this->need('ekifuncs.php'); ?>
 
-<div class="col-mb-12 col-8" id="main" role="main">
+<div class="col-9" id="main" role="main">
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
         <h1 class="post-title" itemprop="name headline">
             <a itemprop="url"
                href="<?php $this->permalink() ?>"><?php $this->title() ?></a>
         </h1>
+<?php //print_r($this->categories); ?>
         <ul class="post-meta">
+            <li>CID: <?php $this->cid(); ?></li>
             <li itemprop="author" itemscope itemtype="http://schema.org/Person">
                 <?php _e('作者: '); ?><a itemprop="name"
                                        href="<?php $this->author->permalink(); ?>"
@@ -16,7 +19,10 @@
             <li><?php _e('时间: '); ?>
                 <time datetime="<?php $this->date('c'); ?>" itemprop="datePublished"><?php $this->date(); ?></time>
             </li>
-            <li><?php _e('分类: '); ?><?php $this->category(','); ?></li>
+            <li><?php _e('分类: '); ?></li>
+            <ul class="post-meta-cats">
+                <?php drawColoredCategory($this->categories); ?>
+            </ul>
         </ul>
         <div class="post-content" itemprop="articleBody">
             <?php $this->content(); ?>

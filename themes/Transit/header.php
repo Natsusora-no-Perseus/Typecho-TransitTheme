@@ -13,14 +13,25 @@
         ], '', ' - '); ?><?php $this->options->title(); ?></title>
 
     <!-- 使用url函数转换相关路径 -->
-    <!--
+    <link rel="stylesheet" href="https://code.cdn.mozilla.net/fonts/fira.css">
     <link rel="stylesheet" href="<?php $this->options->themeUrl('normalize.css'); ?>">
-    -->
-    <link rel="stylesheet" href="<?php $this->options->themeUrl('grid.css'); ?>">
     <!--
-        <link rel="stylesheet" href="<?php //$this->options> themeUrl('style.css'); ?>">
+    <link rel="stylesheet" href="<?php $this->options->themeUrl('grid.css'); ?>">
+    <link rel="stylesheet" href="<?php //$this->options> themeUrl('style.css'); ?>">
     -->
     <link rel="stylesheet" href="<?php $this->options->themeUrl('transit.css'); ?>">
+<!--
+    <style>
+        @font-face{
+            font-family: 'Source Sans 3 VF';
+            font-weight: 200 900;
+            font-style: normal;
+            font-stretch: normal;
+            unicode-range: U+3000-30FF, U+FF00-FFEF, U+4E00-9FAF;
+            src: url("<?php $this->options->themeUrl('./SourceSans3VF-Upright.otf.woff2'); ?>") format('woff2-variations');
+        }
+     </style>
+-->
 
     <!-- 通过自有函数输出HTML头部信息 -->
     <?php $this->header(); ?>
@@ -30,7 +41,7 @@
 <header id="header" class="clearfix">
     <div class="container">
         <div class="row">
-            <div class="site-name col-mb-12 col-9">
+            <div class="site-name col-9">
                 <?php if ($this->options->logoUrl): ?>
                     <a id="logo" href="<?php $this->options->siteUrl(); ?>">
                         <img src="<?php $this->options->logoUrl() ?>" alt="<?php $this->options->title() ?>"/>
@@ -47,7 +58,7 @@
                     <button type="submit" class="submit"><?php _e('搜索'); ?></button>
                 </form>
             </div>
-            <div class="col-mb-12">
+            <div class="col-9">
                 <nav id="nav-menu" class="clearfix" role="navigation">
                     <a<?php if ($this->is('index')): ?> class="current"<?php endif; ?>
                         href="<?php $this->options->siteUrl(); ?>"><?php _e('首页'); ?></a>
