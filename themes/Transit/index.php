@@ -38,7 +38,8 @@ $this->need('ekifuncs.php');
                     <?php
                         $content = $this->content;
                         // $content = $this->content('- 阅读剩余部分 -');
-                        echo getHeadingsOrExcerpt($content, 50);
+                        // echo getHeadingsOrExcerpt($content, 50);
+                        echo strip_tags($content);
                     ?>
                 </div>
             </div>

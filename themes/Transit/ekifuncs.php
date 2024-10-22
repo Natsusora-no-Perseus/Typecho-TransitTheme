@@ -77,8 +77,7 @@ function getCategoryData ($categories) {
 function drawColoredCategory ($categories) {
     $catData = getCategoryData($categories);
     foreach ($catData as $elem) {
-        echo '<li style="background-color:' . $elem['color'] . '"><a href="' .
-            $elem['link'] . '">' . $elem['name'] . ' ↗</a></li>' . "\xA";
+        echo '<li style="background-color:' . $elem['color'] . '; border-color: ' . $elem['color'] . '"><a href="' . $elem['link'] . '">' . $elem['name'] . ' ↗</a></li>' . "\xA";
     }
     // echo '<li style="background-color:' . $color . '"><a href="' . $link . '">'. htmlspecialchars($category['name']) . ' ↗</a></li>' . "\xA";
 }

@@ -1,9 +1,9 @@
 @font-face{
-    font-family: 'Source Sans 3 VF';
-    src: url("SourceSans3VF-Upright.otf.woff2") format('woff2-variations'),
-         url("SourceSans3VF-Upright.otf.woff") format('woff-variations'),
-         url('SourceSans3VF-Upright.ttf') format('truetype-variations');
-    unicode-range: U+0000-FFFF;
+    font-family: 'Source Han Sans VF';
+    src: local('Source Han Sans SC'),
+         local('Noto Sans SC'),
+         local('Noto Sans CJK SC'),
+         url('SourceHanSansSC-VF-GB2312subset.woff2') format('woff2-variations');
     font-weight: 200 900;
     font-style: normal;
     font-stretch: normal;
@@ -13,12 +13,13 @@
 :root {
     color-scheme: light dark;
 }
-
+/* 要注意表单元素并不继承父级 font 的问题 */
 body {
     color: light-dark(#4e4b42, #fafbff);
     background-color: light-dark(#cdc8b0, #1e252a);
-    font-family: 'Source Sans 3 VF', serif;
-    /*'Fira Sans' */
+    font-family: 'Fira Sans', 'Noto Sans SC', 'Source Han Sans VF', serif;
+    font-optical-sizing: auto;
+    font-style: normal;
 }
 
 a {
@@ -26,8 +27,14 @@ a {
 }
 
 .col-9 {
-    width: 90%;
-    padding: 0 5%;
+    width: 100%;
+    padding: 0;
+}
+@media (min-width: 768px) {
+    .col-9 {
+        width: 90%;
+        padding: 0 5%;
+    }
 }
 
 .entry{
@@ -51,14 +58,12 @@ a {
 }
 
 .entry-title {
-    font-size: 2em;
-    line-height: 1.5em;
+    margin: 0;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    margin: 0;
-    border-bottom: 2px solid #6CF;
 }
+
 
 .entry-meta {
     margin-top: 0.5em;
@@ -75,51 +80,49 @@ a {
 
 .entry-content {
     margin-top: 0.5em;
-    max-height: 6em;
     overflow: hidden;
+    white-space: nowrap;
     text-overflow: ellipsis;
+    height: 2em;
 }
 
 .entry-category {
-    padding: 0;
+    padding: 5px 0 5px 5px;
     margin: 1em;
     line-style: none;
-    padding: 0;
     margin: 0;
     display: flex;
     flex-direction: column;
     gap: 0.25em;
     align-self: stretch;
-    align-items: start;
-    writing-mode: vertical-rl;
+    align-items: end;
+    min-width: 3.5em;
 }
 
 .entry-category li {
-    display: flex;
-    font-size: 1em;
-    font-weight: 700;
-    writing-mode: vertical-rl;
-    text-align: center;
-    white-space: normal;
-    display: flex;
-    box-sizing: border-box;
-    flex-grow: 1;
-    height: 100%;
+    font-weight: 500;
+    height: 1.5em;
+    text-align: left;
+    width: 100%;
+    border-left: 5px solid;
+    padding-left: 5px solid #943;
 }
 
 .entry-category li > a {
+    display: inline-block;
+    /* transform: translate(-5%, 0);*/
     text-decoration: none;
-    color: #FFF;
-    display: block;
+    color: light-dark(#000, #FFF);
     padding: 0;
-    padding-top: 0.5em;
-    text-align: start;
+    padding-left: 0.2em;
+    transition: background 0.3s ease;
+    width: 100%;
     height: 100%;
-    transition: backdrop-filter 0.3s ease;
+    background: light-dark(#dad4bbff, #2c2d32ff);
 }
 
 .entry-category li > a:hover {
-    backdrop-filter: brightness(120%);
+    background: unset;
 }
 
 /* post page */

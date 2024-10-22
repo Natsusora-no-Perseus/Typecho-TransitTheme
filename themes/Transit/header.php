@@ -13,26 +13,20 @@
         ], '', ' - '); ?><?php $this->options->title(); ?></title>
 
     <!-- 使用url函数转换相关路径 -->
-    <link rel="stylesheet" href="https://code.cdn.mozilla.net/fonts/fira.css">
     <link rel="stylesheet" href="<?php $this->options->themeUrl('normalize.css'); ?>">
     <!--
-    <link rel="stylesheet" href="<?php $this->options->themeUrl('grid.css'); ?>">
+    <link rel="stylesheet" href="<?php //$this->options->themeUrl('grid.css'); ?>">
     <link rel="stylesheet" href="<?php //$this->options> themeUrl('style.css'); ?>">
     -->
-    <link rel="stylesheet" href="<?php $this->options->themeUrl('transit.css'); ?>">
-<!--
-    <style>
-        @font-face{
-            font-family: 'Source Sans 3 VF';
-            font-weight: 200 900;
-            font-style: normal;
-            font-stretch: normal;
-            unicode-range: U+3000-30FF, U+FF00-FFEF, U+4E00-9FAF;
-            src: url("<?php $this->options->themeUrl('./SourceSans3VF-Upright.otf.woff2'); ?>") format('woff2-variations');
-        }
-     </style>
--->
+    <!-- 加载远程字体 -->
+    <link rel="stylesheet" href="https://code.cdn.mozilla.net/fonts/fira.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&display=swap" rel="stylesheet">
 
+    <!-- 加载附加 CSS -->
+    <link rel="stylesheet" href="<?php $this->options->themeUrl('typo.css'); ?>">
+    <link rel="stylesheet" href="<?php $this->options->themeUrl('transit.css'); ?>">
     <!-- 通过自有函数输出HTML头部信息 -->
     <?php $this->header(); ?>
 </head>
