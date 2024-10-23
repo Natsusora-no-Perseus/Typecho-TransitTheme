@@ -24,14 +24,13 @@ $this->need('ekifuncs.php');
                 </h2>
                 <ul class="entry-meta">
                     <li itemprop="author" itemscope itemtype="http://schema.org/Person">
-                        <a itemprop="name" href="<?php $this->author->permalink(); ?>" rel="author"><?php $this->author(); ?></a></li>
-                        <?php _e("/"); ?>
+                        <a itemprop="name" href="<?php $this->author->permalink(); ?>" rel="author">作: <?php $this->author(); ?>&#8594;</a></li>
                     <li>
                         <time datetime="<?php $this->date('c'); ?>" itemprop="datePublished"><?php $this->date(); ?></time>
                     </li>
                     <li itemprop="interactionCount">
                         <a itemprop="discussionUrl"
-                           href="<?php $this->permalink() ?>#comments"><?php $this->commentsNum('评论', '1 条评论', '%d 条评论'); ?></a>
+                           href="<?php $this->permalink() ?>#comments"><?php $this->commentsNum(); ?> &#x1F5E8;</a>
                     </li>
                 </ul>
                 <div class="entry-content" itemprop="articleBody">

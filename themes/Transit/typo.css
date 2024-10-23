@@ -243,7 +243,7 @@ strong, b {
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Fira Sans', 'Noto Sans CJK SC', PingFang SC, Verdana, Helvetica Neue, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif;
   font-weight: 400;
-  color: #000;
+  color: light-dark(#4e4b42, #fafbff);
   line-height: 1.35;
 }
 

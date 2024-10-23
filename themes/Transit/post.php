@@ -10,7 +10,6 @@
         </h1>
 <?php //print_r($this->categories); ?>
         <ul class="post-meta">
-            <li>CID: <?php $this->cid(); ?></li>
             <li itemprop="author" itemscope itemtype="http://schema.org/Person">
                 <?php _e('作者: '); ?><a itemprop="name"
                                        href="<?php $this->author->permalink(); ?>"
@@ -19,11 +18,13 @@
             <li><?php _e('时间: '); ?>
                 <time datetime="<?php $this->date('c'); ?>" itemprop="datePublished"><?php $this->date(); ?></time>
             </li>
-            <li><?php _e('分类: '); ?></li>
-            <ul class="post-meta-cats">
-                <?php drawColoredCategory($this->categories); ?>
-            </ul>
+            <li itemprop="cid">&#8470;<?php $this->cid(); ?></li>
         </ul>
+        <ul class="post-meta-cats">
+            <li style='border:none;'><?php _e('分类: '); ?></li>
+            <?php drawColoredCategory($this->categories); ?>
+        </ul>
+        <hr></hr>       
         <div class="post-content" itemprop="articleBody">
             <?php $this->content(); ?>
         </div>
