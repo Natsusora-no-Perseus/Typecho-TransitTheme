@@ -28,19 +28,19 @@
         <div class="post-content" itemprop="articleBody">
             <?php $this->content(); ?>
         </div>
-        <p itemprop="keywords" class="tags"><?php _e('标签: '); ?><?php $this->tags(', ', true, 'none'); ?></p>
-    </article>
-
-    <?php $this->need('comments.php'); ?>
-
-    <div class="post-near">
+        <p itemprop="keywords" class="tags"><?php _e('标签: '); ?><?php $this->tags(' ', true, '无标签'); ?></p>
+        <div class="post-near">
             <img src=<?php $this->options->themeUrl('img/left-point.svg'); ?> alt="Prev" id="larrow">
             <div class="near-bar">
                 <div id="ltext"><?php $this->thePrev('%s', '无更旧文章'); ?></div>
                 <div id="rtext"><?php $this->theNext('%s', '无更新文章'); ?></div>
             </div>
             <img src=<?php $this->options->themeUrl('img/left-point.svg'); ?> alt="Next" id="rarrow">
-    </div>
+        </div>
+    </article>
+
+    <?php $this->need('comments.php'); ?>
+
 </div><!-- end #main-->
 
 <?php $this->need('sidebar.php'); ?>

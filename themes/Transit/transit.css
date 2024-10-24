@@ -12,18 +12,44 @@
 
 :root {
     color-scheme: light dark;
+    height: 100%;
+    background-color: light-dark(#cfcfcf, #171717);
 }
+
 /* 要注意表单元素并不继承父级 font 的问题 */
 body {
-    color: light-dark(#4e4b42, #fafbff);
-    background-color: light-dark(#e2e2da, #1e252a);
+    color: light-dark(#000, #fff);
+    background-color: light-dark(#cfcfcf, #171717);
     font-family: 'Fira Sans', 'Noto Sans SC', 'Source Han Sans VF', serif;
     font-optical-sizing: auto;
     font-style: normal;
 }
 
+.container {
+    flex-grow: 1;
+}
+
 a {
-    color: light-dark(#3354AA, #708ec6);
+    color: #5481bc;
+}
+
+pre, code { 
+    background-color: light-dark(#bfbfbf, #343540);
+    font-family: 'Fira Mono', Consolas, "Courier New", monospace;
+    line-height: 1.25;
+}
+code { 
+    padding: 2px 4px;
+    color: light-dark(#000, #fff);
+}
+pre {
+    padding: 8px;
+    overflow: auto;
+    max-height: 400px;
+}
+pre code {
+    padding: 3px;
+    color: light-dark(#000, #fff);
 }
 
 .col-9 {
@@ -37,6 +63,22 @@ a {
     }
 }
 
+#nav-menu {
+    display: flex;
+    flex-direction: row;
+    margin-left: 1em;
+    margin-bottom: 1em;
+    border: 2px solid;
+    border-right: none;
+    height: 3em;
+}
+
+.back-index img {
+    height: 100%;
+    width: auto;
+    background-color: light-dark(#fff,#000);
+}
+
 .entry {
     max-width: 100%;
     display: flex;
@@ -46,7 +88,7 @@ a {
     padding: 0 1em 0em 1em;
     border-bottom: 1px solid #4a5157;
     margin-bottom: 0;
-    background-color: light-dark(#f0efea, #2c2d32);
+    background-color: light-dark(#f2f2f2, #23242b);
 }
 
 .entry-left {
@@ -76,11 +118,11 @@ a {
 
 .entry-meta li > * {
     padding-right: 0.5em;
-    color: light-dark(#4e4b42, #fafbff);
+    color: light-dark(#000, #fff);
 }
 
 .entry-meta li[itemprop='author'] {
-    background-color: light-dark(#e2e2da, #42434b);
+    background-color: light-dark(#bfbfbf, #343540);
     padding-left: 0.5em;
 }
 
@@ -115,12 +157,12 @@ a {
 .entry-category li > a {
     display: inline-block;
     text-decoration: none;
-    color: light-dark(#4e4b42, #fafbff);
+    color: light-dark(#000, #fff);
     padding-left: 0.25em;
     transition: background 0.3s ease;
     width: 100%;
     height: 100%;
-    background: light-dark(#f0efeaff, #2c2d32ff);
+    background: light-dark(#f2f2f2ff, #23242bff);
 }
 
 .entry-category li > a:hover {
@@ -131,7 +173,7 @@ a {
 .post {
     max-width: 100%;
     padding: 0 1em 0em 1em;
-    background: light-dark(#f0efea, #2c2d32);
+    background-color: light-dark(#f2f2f2, #23242b);
 }
 
 .post-title a {
@@ -147,12 +189,12 @@ a {
     list-style: none;
     display: inline-block;
     padding-right: 0.5em;
-    color: light-dark(#4e4b42, #fafbff);
+    color: light-dark(#000, #fff);
 }
 
 .post-meta li[itemprop='cid'] {
     padding-left: 0.5em;
-    background-color: light-dark(#e2e2da, #42434b);
+    background-color: light-dark(#bfbfbf, #343540);
     font-weight: 400;
     float: right;
 }
@@ -179,25 +221,40 @@ a {
     font-weight: 400;
     display: inline-block;
     text-decoration: none;
-    color: #FFF;
+    color: light-dark(#000, #FFF);
     padding-left: 0.25em;
     padding-right: 0.25em;
     transition: background 0.3s ease;
-    background: light-dark(#f0efeaff, #2c2d32ff);
+    background: light-dark(#f2f2f2ff, #23242bff);
 }
 .post-meta-cats li > a:hover {
     background: unset;
 }
 
+/* post keywords */
+.tags {
+    padding-top: 1em;
+}
+.tags a {
+    padding: 3px;
+    border: 1px solid;
+    font-weight: 400;
+}
+
+.tags a:hover {
+    text-decoration: none;
+    padding: 1px;
+    border: 3px solid;
+}
+
 /* post near */
 .post-near {
-    background-color: light-dark(#dad4bb, #1e252a);
+    background-color: light-dark(#f2f2f2, #23242b);
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding-left: 5%;
     max-width: 100%;
-    width: 90%;
+    padding: 1em 0 1em;
     position: relative;
 }
 
@@ -225,11 +282,11 @@ a {
     justify-content: space-between;
     max-width: calc(100% - 3em);
     font-weight: 500;
+    color: #fff;
 }
 
 .near-bar #ltext {
     padding-left: 0.5em;
-    display: inline;
     text-align: left;
     overflow: hidden;
     white-space: nowrap;
@@ -238,7 +295,6 @@ a {
 
 .near-bar #rtext {
     padding-right: 0.5em;
-    display: inline;
     text-align: right;
     overflow: hidden;
     white-space: nowrap;
@@ -283,50 +339,67 @@ a {
  * Comment list
  * --------------- */
 #comments {
-  padding-top: 15px;
+    max-width: 100%;
+    margin-top: 1em;
+    padding: 1em 1em 1em 1em;
+    background-color: light-dark(#f2f2f2, #23242b);
+}
+
+#comments-header {
+    margin-bottom: 1em;
+}
+
+#comments-header > h3 {
+    display: inline-flex;
+}
+
+#comments-header > h3[itemprop='count'] {
+    color: #fff;
+    padding: 0 0.5em 0 0.5em;
+    background-color: #8098a2;
 }
 .comment-list, .comment-list ol {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 .comment-list li {
-  padding: 14px;
-  margin-top: 10px;
-  border: 1px solid #EEE;
+    margin: 0.5em 0 0.5em;
+    padding: 0.25em 0 0.25em 0.5em;
+    border-left: 2px solid #EEE;
 }
+/*
 .comment-list li.comment-level-odd {
-  background: #F6F6F3;
+  background: #343540;
 }
 .comment-list li.comment-level-even {
-  background: #FFF;
+  background: #23242b;
 }
 .comment-list li.comment-by-author {
-  background: #FFF9E8;
+  background: #414d51;
 }
-.comment-list li .comment-reply {
-  text-align: right;
-  font-size: .92857em;
+*/
+.comment-meta {
+    margin-left: 0.5em;
+    display: inline-block;
 }
 .comment-meta a {
   color: #999;
-  font-size: .92857em;
 }
 .comment-author {
-  display: block;
-  margin-bottom: 3px;
-  color: #444;
+  display: inline-block;
+  color: light-dark(#000, #fff);
 }
 .comment-author .avatar {
   float: left;
-  margin-right: 10px;
+  margin-right: 0.5em;
 }
-.comment-author cite {
-  font-weight: bold;
-  font-style: normal;
+.comment-list li .comment-reply {
+    text-align: right;
+    font-weight: 400;
 }
 
-/* Comment reply */
+/* Comment new reply */
 .comment-list .respond {
   margin-top: 15px;
   border-top: 1px solid #EEE;
@@ -337,11 +410,14 @@ a {
   font-size: .92857em;
 }
 #comment-form label {
-  display: block;
+  display: inline-block;
   margin-bottom: .5em;
   font-weight: bold;
+  min-width: 4em;
+  padding-right: 0.5em;
+  text-align: end;
 }
-#comment-form .required:after {
+#comment-form .required:before{
   content: " *";
   color: #C00;
 }
@@ -352,4 +428,10 @@ textarea {
     box-sizing: border-box;
 
     width: 100%;
+}
+
+#footer {
+    font-size: 0.8em;
+    padding: 0 5% 0 5%;
+    display: block;
 }

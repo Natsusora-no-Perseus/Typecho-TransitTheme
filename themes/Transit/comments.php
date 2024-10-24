@@ -2,11 +2,15 @@
 <div id="comments">
     <?php $this->comments()->to($comments); ?>
     <?php if ($comments->have()): ?>
-        <h3><?php $this->commentsNum(_t('暂无评论'), _t('仅有一条评论'), _t('已有 %d 条评论')); ?></h3>
+        <div id="comments-header">
+            <h3>评论 </h3>
+            <h3 itemprop="count"><?php $this->commentsNum(_t('%d')); ?></h3>
+        </div>
 
-        <?php $comments->listComments(); ?>
+        <?php $comments->listComments(['replyWord'=>'↖ 回复']); ?>
 
         <?php $comments->pageNav('&laquo; 前一页', '后一页 &raquo;'); ?>
+        <hr></hr>
 
     <?php endif; ?>
 
@@ -53,6 +57,6 @@
             </form>
         </div>
     <?php else: ?>
-        <h3><?php _e('评论已关闭'); ?></h3>
+        <h3 style="color:#ee6666;">&#9888; <?php _e('评论已关闭'); ?></h3>
     <?php endif; ?>
 </div>

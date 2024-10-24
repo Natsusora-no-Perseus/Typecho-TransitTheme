@@ -36,6 +36,7 @@
     <div class="container">
         <div class="row">
             <div class="site-name col-9">
+                    <!---
                 <?php if ($this->options->logoUrl): ?>
                     <a id="logo" href="<?php $this->options->siteUrl(); ?>">
                         <img src="<?php $this->options->logoUrl() ?>" alt="<?php $this->options->title() ?>"/>
@@ -44,6 +45,7 @@
                     <a id="logo" href="<?php $this->options->siteUrl(); ?>"><?php $this->options->title() ?></a>
                     <p class="description"><?php $this->options->description() ?></p>
                 <?php endif; ?>
+                    --->
             </div>
             <div class="site-search col-3 kit-hidden-tb">
                 <form id="search" method="post" action="<?php $this->options->siteUrl(); ?>" role="search">
@@ -64,6 +66,18 @@
                     <?php endwhile; ?>
                 </nav>
             </div>
+            <div class="col-9">
+                <nav id="nav-menu" class="clearfix" role="navigation">
+                    <?php if ($this->is('index')): ?>
+                    <div class="back-index">
+                        <img src="<?php $this->options->logoUrl(); ?>" alt="网站图标">
+                    <?php $this->options->title() ?></div>
+                    <?php else: ?>
+                    <a class="back-index" href="<?php $this->options->siteUrl(); ?>">
+                        <img src=<?php $this->options->themeUrl('img/exit-arrow.svg'); ?> alt="主页" id="backarrow">
+                    </a>
+                    <?php endif; ?>
+
         </div><!-- end .row -->
     </div>
 </header><!-- end #header -->
