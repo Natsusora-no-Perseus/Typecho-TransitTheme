@@ -71,12 +71,66 @@
                     <?php if ($this->is('index')): ?>
                     <div class="back-index">
                         <img src="<?php $this->options->logoUrl(); ?>" alt="网站图标">
-                    <?php $this->options->title() ?></div>
+                    </div>
+                    <div class="site-desc">
+                        <div id="site-title">
+                            <?php $this->options->title(); ?>
+                        </div>
+                        <div id="description">
+                            <?php $this->options->description(); ?>
+                        </div>
+                    </div>
                     <?php else: ?>
                     <a class="back-index" href="<?php $this->options->siteUrl(); ?>">
                         <img src=<?php $this->options->themeUrl('img/exit-arrow.svg'); ?> alt="主页" id="backarrow">
                     </a>
+                    <div class="back-desc">主页</div>
                     <?php endif; ?>
+
+                    <div class="dropdown">
+                        <input type="checkbox" id="category-menu" itemprop="menu-box">
+                        <label for="category-menu" class="menu-label">分类</label>
+                        <?php \Widget\Metas\Category\Rows::alloc()->listCategories('wrapClass=menu-items'); ?>
+                       </ul>
+                    </div>
+                    <div class="dropdown">
+                        <input type="checkbox" id="category-menu" itemprop="menu-box">
+                        <label for="category-menu" class="menu-label">分类</label>
+                        <?php \Widget\Metas\Category\Rows::alloc()->listCategories('wrapClass=menu-items'); ?>
+                       </ul>
+                    </div>
+
+                    <div class="dropdown">
+                        <input type="checkbox" id="others-menu" itemprop="menu-box">
+                        <label for="others-menu" class="menu-label">其它</label>
+                        <ul class="menu-items">
+                            <?php // Custom pages ?>
+                            <?php \Widget\Contents\Page\Rows::alloc()->to($pages); ?>
+                            <?php while ($pages->next()): ?>
+                            <li><a<?php if ($this->is('page', $pages->slug)): ?> class="current"<?php endif; ?>
+                            href="<?php $pages->permalink(); ?>"
+                            title="<?php $pages->title(); ?>"><?php $pages->title(); ?></a></li>
+                            <?php endwhile; ?>
+
+                            <?php if ($this->user->hasLogin()): ?>
+                            <li class="last"><a href="<?php $this->options->adminUrl(); ?>"><?php _e('进入后台'); ?>(<?php $this->user->screenName(); ?>)</a></li>
+                            <li><a href="<?php $this->options->logoutUrl(); ?>"><?php _e('退出'); ?></a></li>
+                            <?php else: ?>
+                            <li class="last"><a href="<?php $this->options->adminUrl('login.php'); ?>"><?php _e('登录'); ?></a></li>
+                            <?php endif; ?>
+                            <li><a href="<?php $this->options->feedUrl(); ?>"><?php _e('文章 RSS'); ?></a></li>
+                            <li><a href="<?php $this->options->commentsFeedUrl(); ?>"><?php _e('评论 RSS'); ?></a></li>
+                            <div class="dropdown">
+                                <input type="checkbox" id="more-menu" itemprop="menu-box">
+                                <label for="more-menu" class="menu-label">其它</label>
+                                <ul class="menu-items">
+                                    <li><a href='#'>选项</a></li>
+                                    <li><a href='#'>选项</a></li>
+                                    <li><a href='#'>选项</a></li>
+                                </ul>
+                            </div>
+                       </ul>
+                    </div>
 
         </div><!-- end .row -->
     </div>

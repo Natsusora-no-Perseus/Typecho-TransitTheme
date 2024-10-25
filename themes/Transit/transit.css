@@ -66,18 +66,120 @@ pre code {
 #nav-menu {
     display: flex;
     flex-direction: row;
-    margin-left: 1em;
     margin-bottom: 1em;
-    border: 2px solid;
     border-right: none;
     height: 3em;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    background-color: light-dark(#bfbfbf, #343540);
+    white-space: wrap;
 }
 
 .back-index img {
     height: 100%;
     width: auto;
-    background-color: light-dark(#fff,#000);
+    background-color: #f4df4b;
 }
+
+.back-index {
+    display: inline-block;
+    height: 100%;
+}
+
+.site-desc, .back-desc {
+    display: block;
+    background-color: #f4df4b;
+    color: #000;
+    padding: 0 0.5em 0 0.5em;
+    margin-right: 1em;
+    height: 100%;
+    flex-grow: 1;
+    white-space: nowrap;
+}
+
+.back-desc {
+    font-size: 1.3em;
+    line-height: 2.4em;
+    font-weight: 400;
+}
+
+.site-desc #site-title {
+    font-size: 1.3em;
+    font-weight: 400;
+}
+
+.site-desc #description {
+    font-size: 0.8em;
+    line-height: 0.2;
+}
+
+/* Dropdown menu */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    height: 100%;
+}
+
+input[itemprop='menu-box'] {
+    display: none;
+}
+
+.menu-label {
+    cursor: pointer;
+    height: 100%;
+    display: inline-block;
+    align-items: center;
+    padding-left: 0.6em;
+    padding-right: 0.8em;
+    background-color: light-dark(#bfbfbf, #343540);
+    font-weight: 400;
+    transition: ease filter 0.3s;
+    white-space: nowrap;
+}
+
+.menu-label:hover {
+    filter: brightness(150%);
+}
+
+.menu-label[for='others-menu']:before {
+    background: #89b53f;
+}
+
+.menu-label:before{
+    content: "";
+    background: #e27838;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 90%;
+    width: 0.5em;
+}
+
+.menu-items {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    list-style: none;
+    width: 150px;
+}
+
+input[itemprop='menu-box']:checked + .menu-label + .menu-items {
+    display: block;
+}
+
+.menu-items li {
+    padding: 8px 12px;
+    background-color: #343549;
+}
+
+.menu-items li a {
+    text-decoration: none;
+    display: block;
+}
+
+/* Index entries */
 
 .entry {
     max-width: 100%;
