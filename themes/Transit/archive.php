@@ -51,5 +51,5 @@
     <?php $this->pageNav('&laquo; 前一页', '后一页 &raquo;'); ?>
 </div><!-- end #main -->
 
-<?php $this->need('sidebar.php'); ?>
+<?php //$this->need('sidebar.php'); ?>
 <?php $this->need('footer.php'); ?>

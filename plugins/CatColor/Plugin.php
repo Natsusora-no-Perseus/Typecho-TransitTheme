@@ -34,9 +34,17 @@ class CatColor_Plugin implements Typecho_Plugin_Interface
             throw new Typecho_Plugin_Exception('读取数据表列失败' . $e->getCode());
         }
 
-        $result= array_filter($result, function ($column) {
-            return $column['name'] === 'category_color';
-        });
+        if ($adapter === 'Pdo_Mysql') {
+            $result = $db->select('COUNT(*)')
+                ->from($prefix . 'metas')
+                ->where('column_name = category_color');
+        }
+        else
+        {
+            $result= array_filter($result, function ($column) {
+                return $column['name'] === 'category_color';
+            });
+        }
 
         if (empty($result)) {
             // Create the table for category colors if it doesn't exist

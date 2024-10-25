@@ -78,6 +78,8 @@ pre code {
     .back-index img {
         height: 100%;
         width: auto;
+        white-space: nowrap;
+        overflow: hidden;
         background-color: #f4df4b;
     }
 
@@ -95,6 +97,7 @@ pre code {
         height: 100%;
         flex-grow: 1;
         white-space: nowrap;
+        overflow: hidden;
     }
 
     .back-desc {
@@ -136,7 +139,7 @@ input[itemprop='menu-box'] {
     align-items: center;
     padding-left: 0.6em;
     padding-right: 0.8em;
-    background-color: light-dark(#bfbfbf, #343540);
+    background-color: light-dark(#fff, #343540);
     font-weight: 400;
     transition: ease filter 0.3s;
     white-space: nowrap;
@@ -191,7 +194,7 @@ input[itemprop='menu-box']:checked + .menu-label + .menu-items {
     flex-wrap: nowrap;
     align-items: center;
     justify-content: space-between;
-    background-color: light-dark(#bfbfbf, #343540);
+    background-color: light-dark(#fff, #343540);
     white-space: wrap;
     & #nav-spacer {
         flex-grow: 1;
@@ -204,7 +207,6 @@ input[itemprop='menu-box']:checked + .menu-label + .menu-items {
     }
     border-top: 5px solid #89b53f;
     padding-top: 0.2em;
-    font-size: 1.3em;
     & ~ .menu-items {
         width: 16em;
         z-index: 1;
@@ -318,7 +320,7 @@ input[itemprop='menu-box']:checked + .menu-label + .menu-items {
     gap: 3px;
     align-self: stretch;
     align-items: end;
-    min-width: 3.5em;
+    min-width: 4em;
 }
 
 .entry-category li {
