@@ -20,7 +20,7 @@
 body {
     color: light-dark(#000, #fff);
     background-color: light-dark(#cfcfcf, #171717);
-    font-family: 'Fira Sans', 'Noto Sans SC', 'Source Han Sans VF', serif;
+    font-family: 'Fira Sans', 'Noto Sans SC', 'Source Han Sans VF', sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
 }
