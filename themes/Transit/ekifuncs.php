@@ -56,9 +56,17 @@ function getCategoryData ($categories) {
 
         // Query DB for color assigned to catId
         $db = Typecho_Db::get();
-        $color = $db->fetchObject($db->select('category_color')
-            ->from('table.metas')
-            ->where('mid = ?', $catId))->category_color;
+        $type = explode('_', $db->getAdapterName());
+        $type = array_pop($type);
+        $prefix = $db->getPrefix();
+        try {
+            $color = $db->fetchObject($db->select('category_color')
+                ->from($prefix . 'metas')
+                ->where('mid = ?', $catId))->category_color;
+        } catch (Typecho_Db_Exception $e) {
+            // Fallback
+            $color = $defaultColor;
+        }
 
         // Color fallback check
         $color = $color ? $color : $defaultColor;

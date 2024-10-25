@@ -23,8 +23,17 @@ class CatColor_Plugin implements Typecho_Plugin_Interface
         $adapter = $db->getAdapterName();
         $prefix = $db->getPrefix();
 
-        // For SQLite, use PRAGMA to check for the column
-        $result= $db->fetchAll($db->query("PRAGMA table_info(`{$prefix}metas`)"));
+        try {
+            if ($adapter === 'Pdo_Mysql') {
+                $result = $db->fetchAll($db->query("SHOW COLUMNS from {$prefix}metas"));
+            } elseif ($adapter === 'Pdo_SQLite') {
+                // For SQLite, use PRAGMA to check for the column
+                $result = $db->fetchAll($db->query("PRAGMA table_info(`{$prefix}metas`)"));
+            }
+        } catch (Typecho_Db_Exception $e) {
+            throw new Typecho_Plugin_Exception('读取数据表列失败' . $e->getCode());
+        }
+
         $result= array_filter($result, function ($column) {
             return $column['name'] === 'category_color';
         });
@@ -37,7 +46,11 @@ class CatColor_Plugin implements Typecho_Plugin_Interface
                 // $db->query('ALTER TABLE `' . $db->getPrefix() . 'metas` ADD `category_color` VARCHAR(7) DEFAULT NULL');
              */
             try {
-                $db->query('ALTER TABLE ' . 'typecho_metas ADD COLUMN category_color TEXT');
+                if ($adapter === 'Pdo_Mysql') {
+                    $db->query("ALTER TABLE `{$prefix}metas` ADD `category_color` VARCHAR(7)");
+                } elseif ($adapter === 'Pdo_SQLite') {
+                    $db->query("ALTER TABLE `{$prefix}metas` ADD `category_color` VARCHAR(7)");
+                }
             } catch (Typecho_Db_Exception $e) {
                 // Query error handling
                 throw new Typecho_Plugin_Exception(_t('Error while checking or adding `category_color` column: ') . $e->getMessage());
