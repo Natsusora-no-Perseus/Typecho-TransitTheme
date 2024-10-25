@@ -35,39 +35,8 @@
 <header id="header" class="clearfix">
     <div class="container">
         <div class="row">
-            <div class="site-name col-9">
-                    <!---
-                <?php if ($this->options->logoUrl): ?>
-                    <a id="logo" href="<?php $this->options->siteUrl(); ?>">
-                        <img src="<?php $this->options->logoUrl() ?>" alt="<?php $this->options->title() ?>"/>
-                    </a>
-                <?php else: ?>
-                    <a id="logo" href="<?php $this->options->siteUrl(); ?>"><?php $this->options->title() ?></a>
-                    <p class="description"><?php $this->options->description() ?></p>
-                <?php endif; ?>
-                    --->
-            </div>
-            <div class="site-search col-3 kit-hidden-tb">
-                <form id="search" method="post" action="<?php $this->options->siteUrl(); ?>" role="search">
-                    <label for="s" class="sr-only"><?php _e('搜索关键字'); ?></label>
-                    <input type="text" id="s" name="s" class="text" placeholder="<?php _e('输入关键字搜索'); ?>"/>
-                    <button type="submit" class="submit"><?php _e('搜索'); ?></button>
-                </form>
-            </div>
             <div class="col-9">
-                <nav id="nav-menu" class="clearfix" role="navigation">
-                    <a<?php if ($this->is('index')): ?> class="current"<?php endif; ?>
-                        href="<?php $this->options->siteUrl(); ?>"><?php _e('首页'); ?></a>
-                    <?php \Widget\Contents\Page\Rows::alloc()->to($pages); ?>
-                    <?php while ($pages->next()): ?>
-                        <a<?php if ($this->is('page', $pages->slug)): ?> class="current"<?php endif; ?>
-                            href="<?php $pages->permalink(); ?>"
-                            title="<?php $pages->title(); ?>"><?php $pages->title(); ?></a>
-                    <?php endwhile; ?>
-                </nav>
-            </div>
-            <div class="col-9">
-                <nav id="nav-menu" class="clearfix" role="navigation">
+                <nav id="nav-title" class="clearfix" role="navigation">
                     <?php if ($this->is('index')): ?>
                     <div class="back-index">
                         <img src="<?php $this->options->logoUrl(); ?>" alt="网站图标">
@@ -87,22 +56,11 @@
                     <div class="back-desc">主页</div>
                     <?php endif; ?>
 
-                    <div class="dropdown">
-                        <input type="checkbox" id="category-menu" itemprop="menu-box">
-                        <label for="category-menu" class="menu-label">分类</label>
-                        <?php \Widget\Metas\Category\Rows::alloc()->listCategories('wrapClass=menu-items'); ?>
-                       </ul>
-                    </div>
-                    <div class="dropdown">
-                        <input type="checkbox" id="category-menu" itemprop="menu-box">
-                        <label for="category-menu" class="menu-label">分类</label>
-                        <?php \Widget\Metas\Category\Rows::alloc()->listCategories('wrapClass=menu-items'); ?>
-                       </ul>
-                    </div>
+                    <div id='title-space'></div>
 
                     <div class="dropdown">
-                        <input type="checkbox" id="others-menu" itemprop="menu-box">
-                        <label for="others-menu" class="menu-label">其它</label>
+                        <input type="checkbox" id="other-menu" itemprop="menu-box">
+                        <label for="other-menu" class="menu-label">其它&#x2197;</label>
                         <ul class="menu-items">
                             <?php // Custom pages ?>
                             <?php \Widget\Contents\Page\Rows::alloc()->to($pages); ?>
@@ -120,17 +78,55 @@
                             <?php endif; ?>
                             <li><a href="<?php $this->options->feedUrl(); ?>"><?php _e('文章 RSS'); ?></a></li>
                             <li><a href="<?php $this->options->commentsFeedUrl(); ?>"><?php _e('评论 RSS'); ?></a></li>
-                            <div class="dropdown">
-                                <input type="checkbox" id="more-menu" itemprop="menu-box">
-                                <label for="more-menu" class="menu-label">其它</label>
-                                <ul class="menu-items">
-                                    <li><a href='#'>选项</a></li>
-                                    <li><a href='#'>选项</a></li>
-                                    <li><a href='#'>选项</a></li>
-                                </ul>
-                            </div>
+                            <li>
+                                <form id="search" method="post" action="<?php $this->options->siteUrl(); ?>" role="search">
+                                    <label for="s" class="sr-only"><?php _e('搜索关键字'); ?></label>
+                                    <input type="text" id="s" name="s" class="text" placeholder="<?php _e('输入关键字搜索'); ?>"/>
+                                    <button type="submit" class="submit"><?php _e('搜索'); ?></button>
+                                </form>
+                            </li>
                        </ul>
                     </div>
+                </nav>
+                <nav id="nav-menu" class="clearfix" role="navigation">
+                    <div id='nav-spacer'></div>
+                    <div class="dropdown">
+                        <input type="checkbox" id="newpost-menu" itemprop="menu-box">
+                        <label for="newpost-menu" class="menu-label">最新文章</label>
+                        <ul class="menu-items">
+                            <?php \Widget\Contents\Post\Recent::alloc()
+                                ->parse('<li><a href="{permalink}">{title}</a></li>'); ?>
+                        </ul>
+                    </div>
+                    <div class="dropdown">
+                        <input type="checkbox" id="category-menu" itemprop="menu-box">
+                        <label for="category-menu" class="menu-label">分类</label>
+                        <?php \Widget\Metas\Category\Rows::alloc()->listCategories('wrapClass=menu-items'); ?>
+                       </ul>
+                    </div>
+                    <div class="dropdown">
+                        <input type="checkbox" id="date-menu" itemprop="menu-box">
+                        <label for="date-menu" class="menu-label">日期归档</label>
+                        <ul class="menu-items">
+                            <?php \Widget\Contents\Post\Date::alloc('type=month&format=F Y')->parse('<li><a href="{permalink}">{date}</a></li>'); ?>
+                        </ul>
+                    </div>
+                    <div class="dropdown">
+                        <input type="checkbox" id="comment-menu" itemprop="menu-box">
+                        <label for="comment-menu" class="menu-label">最新评论</label>
+                        <ul class="menu-items">
+                            <?php \Widget\Comments\Recent::alloc()->to($comments); ?>
+                            <?php $outCommentCnt = 0 ?>
+                            <?php while ($comments->next()&&($outCommentCnt < 5)): ?>
+                                <?php $outCommentCnt++; ?>
+                                <li>
+                                    <a href="<?php $comments->permalink(); ?>"><?php $comments->author(false); ?></a>&raquo; <?php $comments->excerpt(15, '...'); ?>
+                                </li>
+                            <?php endwhile; ?>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
 
         </div><!-- end .row -->
     </div>
