@@ -25,7 +25,7 @@
             <?php drawColoredCategory($this->categories); ?>
         </ul>
         <hr></hr>       
-        <div class="post-content" itemprop="articleBody">
+        <div class="post-content typo" itemprop="articleBody">
             <?php $this->content(); ?>
         </div>
         <p itemprop="keywords" class="tags"><?php _e('标签: '); ?><?php $this->tags(' ', true, '无标签'); ?></p>
